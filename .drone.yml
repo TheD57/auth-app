@@ -14,7 +14,14 @@ steps:
       - cd ./src/
       - npm install
       - npm run start
-      
+  
+  - name: test
+    image: node:latest
+    commands:
+      - cd ./src/
+      - npm run test
+    depends_on: [ app-build ]
+
   - name: code-analysis
     image: node:latest
     environment:
