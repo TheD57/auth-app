@@ -2,7 +2,7 @@ kind: pipeline
 type: docker
 name: REACTAPP
 
-
+ 
 trigger:
   event:
     - push
