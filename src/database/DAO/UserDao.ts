@@ -3,7 +3,6 @@ import User from "../../model/User";
 import PgDatabase from "../pgDatabase";
 import IUserDAO from "./interfaces/IUserDAO";
 import { isValidPassword } from "./utils";
-// import db from """
 class UserDAO implements IUserDAO {
 	db: PgDatabase;
 
@@ -12,13 +11,6 @@ class UserDAO implements IUserDAO {
 	}
 
 	insertUser: (user: User) => Promise<boolean>;
-
-	getAllUser = async () => {
-		const query = "SELECT * FROM users";
-		const result = await this.db.executeWithErrorHandling(query);
-		const users = await result.rows;
-		return users;
-	};
 
 	getUser = async (email: string, password: string) => {
 		const query = `SELECT * FROM users WHERE user_email = $1`

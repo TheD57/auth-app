@@ -1,5 +1,6 @@
 import { Client, Pool } from 'pg';
-
+import dotenv from 'dotenv'
+dotenv.config();
 
 export default class PgDatabase {
     private username: string;
@@ -7,18 +8,20 @@ export default class PgDatabase {
     private database: string;
     private host: string;
     private dbClient : Pool;  
+    private port : number;
 
-    constructor(username: string,password: string,database: string , host : string) {
+    constructor(username: string,password: string,database: string , host : string, port : number) {
         this.username = username;
         this.password = password;
         this.database = database;
         this.host = host;
+        this.port = port;
         this.init();
     }
 
     private init(): void {
         const pool = new Pool({
-            port: 5432,
+            port: this.port,
             user: this.username,
             host: this.host,
             database: this.database,
@@ -60,6 +63,12 @@ export default class PgDatabase {
 
 //  -----------------------DATABASE-----------------------------
 // should maybe have a factory for this singleton instance
-export const db = new PgDatabase('postgres','achanger','reactAuth','localhost');
+const port = Number(process.env.REACTPORTDB);
+const user= String(process.env.REACTUSERNAME);
+const host = String(process.env.REACTHOST);
+const database= String(process.env.REACTDATABASE);
+const password= String(process.env.REACTPASSWORD);
+console.log(port, host, database, password,user );
+export const db = new PgDatabase(user,password,database,host,port);
 
 

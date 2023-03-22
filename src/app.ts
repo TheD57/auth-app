@@ -1,16 +1,7 @@
 import express, { Application } from 'express';
-// import compression from 'compression';
 import cors from 'cors';
-// import db from './database';
-// import morgan from 'morgan';
-// import ErrorMiddleware from './middleware/error.middleware';
 import bodyParser from 'body-parser';
-import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-// to secure
-// import helmet from 'helmet';
-
-import http from 'http';
 import IController from './controler/IController';
 import { swaggerSpec } from './utils/swagger-docs';
 import morgan from 'morgan';
@@ -26,7 +17,6 @@ class App {
         this.express = express();
         this.port = port;
         this.logger = new Logger();
-        // this.initialiseDatabase();
         this.initialiseMiddleware();
         this.initialiseControllers(controllers);
         this.initialiseSwagger();
@@ -34,13 +24,10 @@ class App {
     }
 
     private initialiseMiddleware(): void {
-        // this.express.use(helmet());
         this.express.use(cors());
         this.express.use(morgan('dev'));
         this.express.use(express.json());
         this.express.use(express.urlencoded({ extended: false }));
-        // this.express.use(compression());
-        // mine
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({
             extended: true
@@ -52,9 +39,6 @@ class App {
         controllers.forEach((controller: IController) => {
             this.express.use('/api', controller.router);
         });
-        this.express.get('/toto', (req, res) => {
-            res.send('Hello World!');
-        })
     }
 
     public listen(): void {

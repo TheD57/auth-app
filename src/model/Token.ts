@@ -3,7 +3,6 @@ import IToken from './IToken';
 import User from './User';
 
 export const createToken = (user: User): string => {
-    console.log('createToken ================================= '+user.id)
     return jwt.sign({ id: user.id }, "foo" as jwt.Secret, {
         expiresIn: '1d',
     });

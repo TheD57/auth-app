@@ -29,9 +29,8 @@ class UserController implements IController {
             ValidationMiddleware(Validator.login),
             this.login
         );
-        // this.router.get(`${this.path}/getUser`, AuthenticatedMiddleware, this.getUser);
 
-        this.router.get(`${this.path}/forgotPassWord`, AuthenticatedMiddleware, this.forgotPassword);
+        // this.router.get(`${this.path}/forgotPassWord`, AuthenticatedMiddleware, this.forgotPassword);
 
     }
 
@@ -79,28 +78,13 @@ class UserController implements IController {
         }
     };
 
-    // private getUser = (
-    //     req: Request,
-    //     res: Response,
-    //     next: NextFunction
-    // ): Response | void => {
-    //     if (!req.user) {
-    //         return next(new HttpException(404, 'No logged in user'));
-    //     }
-
-    //     res.status(200).send({ data: req.user });
-    // };
 
     private forgotPassword = (
         req: Request,
         res: Response,
         next: NextFunction
     ): Response | void => {
-        if (!req) {
-            return next(new HttpException(404, 'No logged in user'));
-        }
-
-        res.status(200).send({ data: req });
+        next(new HttpException(500,'Unable to connect user '));
     };
 
 }

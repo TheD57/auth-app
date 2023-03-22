@@ -9,8 +9,8 @@ async function authenticatedMiddleware(
     next: NextFunction
 ): Promise<Response | void> {
     const bearer = req.headers.authorization;
-        
-    
+
+
 
     if (!bearer || !bearer.startsWith('Bearer ')) {
         return next(new HttpException(401, 'Unauthorised'));
@@ -19,7 +19,7 @@ async function authenticatedMiddleware(
     const accessToken = bearer.split('Bearer ')[1].trim();
     try {
         const payload: IToken | jwt.JsonWebTokenError = await token.verifyToken(
-            accessToken// JWT_KEY
+            accessToken
         );
 
         if (payload instanceof jwt.JsonWebTokenError) {
