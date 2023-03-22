@@ -25,9 +25,14 @@ export default class PgDatabase {
             password: this.password
           });
           this.dbClient = pool;
-          this.dbClient.on('connect', (err: any) => {
-            console.log('sucessfully initialized database');
-          })
+          this.dbClient.connect((err, client, release) => {
+            if (err) {
+              console.error('Error connecting to the database', err.stack);
+            } else {
+              console.log('Successfully connected to the database');
+              release();
+            }
+          });
           this.dbClient.on('error', (err: any) => {
             console.error('Unexpected error on database client', err)
             // process.exit(-1)
