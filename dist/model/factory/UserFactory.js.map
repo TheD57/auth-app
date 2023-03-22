@@ -1,0 +1,1 @@
+{"version":3,"file":"UserFactory.js","sourceRoot":"","sources":["../../../src/model/factory/UserFactory.ts"],"names":[],"mappings":";;;;;;AAAA,mDAA2B;AAE3B,MAAa,WAAW;IAEb,MAAM,CAAC,UAAU,CAAE,OAAY;QAClC,OAAO,IAAI,cAAI,CAAC,OAAO,CAAC,EAAE,EAAC,OAAO,CAAC,UAAU,EAAE,OAAO,CAAC,eAAe,EAAE,OAAO,CAAC,cAAc,EAAE,OAAO,CAAC,aAAa,CAAC,CAAC;IAC3H,CAAC;CACJ;AALD,kCAKC"}
